@@ -1,0 +1,20 @@
+{
+  "name": "interlude",
+  "version": "0.0.0",
+  "description": "Syntactic suger on top of restify with document generation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Echo3ToEcho7/interlude.git"
+  },
+  "keywords": [
+    "rest"
+  ],
+  "author": "Colin O'Brien",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "3c89b3dfb11e52e852a3ecc28bc320b7655c5054"
+}
