@@ -13,6 +13,10 @@
   "keywords": [
     "rest"
   ],
+  "dependencies": {
+    "restify": "~2.3.4",
+    "semver": "~1.1.4"
+  },
   "author": "Colin O'Brien",
   "license": "BSD",
   "readmeFilename": "README.md",
