@@ -7,7 +7,7 @@ Scala, interlude is built on top of
 provides a clean api for defining RESTful web service apis.  At the same 
 time, interlude provides the ability to document your services along side
 the endpoint definitions and hadlers, and creates a documentation
-website that.
+website.
 
 Example
 =======
@@ -53,7 +53,7 @@ Screenshot
 ----------
 
 ![interlude
-screenshot](https://raw.github.com/Echo3ToEcho7/interlude/master/screenshot.png)
+screenshot](https://github.com/Echo3ToEcho7/interlude/blob/master/screenshot.png)
 
 Todos
 =====
