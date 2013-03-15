@@ -56,7 +56,7 @@ screenshot](https://raw.github.com/Echo3ToEcho7/interlude/master/screenshot.png)
 Todos
 =====
 
-[ ] Make the autogen documentation page prettier
-[ ] Expose the restify jsonClient
-[ ] Documentation
-[ ] Test cases
+- [ ] Make the autogen documentation page prettier
+- [ ] Expose the restify jsonClient
+- [ ] Documentation
+- [ ] Test cases
