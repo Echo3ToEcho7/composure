@@ -53,7 +53,7 @@ Screenshot
 ----------
 
 ![interlude
-screenshot](https://github.com/Echo3ToEcho7/interlude/blob/master/screenshot.png)
+screenshot](https://raw.github.com/Echo3ToEcho7/interlude/master/screenshot.png)
 
 Todos
 =====
