@@ -1,7 +1,9 @@
 interlude
 =========
 
-Inspired by https://github.com/wordnik/swagger-core/ for Scala, interlude is built on top of https://github.com/mcavage/node-restify and
+Inspired by [Swagger](https://github.com/wordnik/swagger-core/) for
+Scala, interlude is built on top of
+[restify](https://github.com/mcavage/node-restify) and
 provides a clean api for defining RESTful web service apis.  At the same 
 time, interlude provides the ability to document your services along side
 the endpoint definitions and hadlers, and creates a documentation
