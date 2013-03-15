@@ -2,25 +2,29 @@ doctype 5
 html(lang="en")
   head
     title= self.name + " Documentation"
-    link(rel="stylesheet", type='text/css', href='/_static/bootstrap/css/bootstrap.css')
-  body(data-spy="scroll", data-target="#navbar")
+    link(rel="stylesheet", type='text/css', href='/_static/bootstrap/css/bootstrap.simplex.min.css')
+  body(data-spy="scroll", data-target=".nav-list")
     .container-fluid
       .row-fluid
         .span3
-          ul.nav.nav-list#navbar(style="margin-top: 64px")
+          ul.nav.nav-list#navbar(style="margin-top: 64px; background-color: #fefefe; padding-top: 16px; padding-bottom: 16px")
             each service in self.services
               li.nav-header= service.name
               each path in service.paths
                 - var groupId = path.verb + "_" + path.path.replace(/\//g, "_").replace(/:/g, "_")
                 li
-                  a(href="#" + groupId)= path.verb + " :: /" + service.name + path.path
+                  a(href="#" + groupId)= "/" + service.name + path.path + " @ " + path.verb
         .span9
           .hero-unit
             h1= self.name
               small= " Version " + self.version
           each service in self.services
             .page-header
-              h2= service.name
+              h1= service.name + " "
+                small.pull-right(style="line-height: 40px; font-size: 14px")
+                  a.expand-all(data-service-name= service.name, href="#") Expand All 
+                  span |
+                  a.collapse-all(data-service-name= service.name, href="#") Collapse All
             .accordion(id=service.name)
               each path in service.paths
                 - var groupId = path.verb + "_" + path.path.replace(/\//g, "_").replace(/:/g, "_")
@@ -30,36 +34,63 @@ html(lang="en")
                 if path.verb === "DELETE"
                   - indicator = "error"
                 if path.verb === "PUT"
+                  - indicator = "warning"
+
                 .accordion-group(id=groupId)
                   .accordion-heading
-                    .alert.accordion-toggle(class="alert-" + indicator, style="height: 22px; margin: 0px", data-toggle="collapse", data-parent="#" + service.name, href="#collapse-" + groupId) 
+                    .alert.accordion-toggle(class="alert-" + indicator, style="height: 22px; margin: 0px", data-toggle="collapse", data-parent="#_" + service.name, href="#collapse-" + groupId) 
                       .row-fluid(style="height: 22px")
                         .span1= path.verb
                         .span4= "/" + service.name + path.path
                         .span7.text-right= path.summery
                   .accordion-body.collapse(id="collapse-" + groupId)
                     .accordion-inner
-                      if path.description
-                        h5.page-header Description
-                        != path.description
-                      h5.page-header URL Parameters
                       form
-                        table.table.table-condenced
-                          thead
-                            tr
-                              td Parameter
-                              td Value
-                              td Summery
-                          tbody
-                            each param in path.pathParts
-                              if param.type === "param"
-                                tr
-                                  td= param.name
-                                  td
-                                    input.input-block-level(type="text", name=param.name)
-                                  td
-                                  td.text-right= param.summery
-                        button.btn(type="submit") Submit
+                        if path.description
+                          fieldset
+                            legend Description
+                            != path.description
+                        fieldset
+                          legend URL Parameters
+                          table.table.table-condenced
+                            thead
+                              tr
+                                td Parameter
+                                td Value
+                                td Summery
+                            tbody
+                              each param in path.pathParts
+                                if param.type === "param"
+                                  tr
+                                    td= param.name
+                                    td
+                                      input.input-block-level(type="text", name=param.name)
+                                    td.text-right= param.summery
+                        .form-actions
+                          button.btn.btn-primary.disabled(type="submit", disabled) Try it!
 
     script(type="text/javascript", src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
     script(type='text/javascript', src='/_static/bootstrap/js/bootstrap.js')
+    script
+      var doAccordionAction = function(rootDom, command) {
+        $(rootDom).find(".accordion-body").each(function (idx, elt) {
+          $(elt).collapse(command);
+        });
+
+        return false;
+      };
+
+      var expandAll = function(rootDom) { return doAccordionAction(rootDom, "show"); };
+      var collapseAll = function(rootDom) { return doAccordionAction(rootDom, "hide"); };
+
+      $(document).ready(function () {
+        $(".expand-all").each(function (idx, elt) {
+          var id = "#" + $(elt).attr("data-service-name") + ".accordion"
+          $(elt).on("click", function () { return expandAll($(id)); });
+        });
+
+        $(".collapse-all").each(function (idx, elt) {
+          var id = "#" + $(elt).attr("data-service-name") + ".accordion"
+          $(elt).on("click", function () { return collapseAll($(id)); });
+        });
+      });
