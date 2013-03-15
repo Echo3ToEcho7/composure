@@ -1,0 +1,65 @@
+doctype 5
+html(lang="en")
+  head
+    title= self.name + " Documentation"
+    link(rel="stylesheet", type='text/css', href='/_static/bootstrap/css/bootstrap.css')
+  body(data-spy="scroll", data-target="#navbar")
+    .container-fluid
+      .row-fluid
+        .span3
+          ul.nav.nav-list#navbar(style="margin-top: 64px")
+            each service in self.services
+              li.nav-header= service.name
+              each path in service.paths
+                - var groupId = path.verb + "_" + path.path.replace(/\//g, "_").replace(/:/g, "_")
+                li
+                  a(href="#" + groupId)= path.verb + " :: /" + service.name + path.path
+        .span9
+          .hero-unit
+            h1= self.name
+              small= " Version " + self.version
+          each service in self.services
+            .page-header
+              h2= service.name
+            .accordion(id=service.name)
+              each path in service.paths
+                - var groupId = path.verb + "_" + path.path.replace(/\//g, "_").replace(/:/g, "_")
+                - var indicator = "success"
+                if path.verb === "GET"
+                  - indicator = "info"
+                if path.verb === "DELETE"
+                  - indicator = "error"
+                if path.verb === "PUT"
+                .accordion-group(id=groupId)
+                  .accordion-heading
+                    .alert.accordion-toggle(class="alert-" + indicator, style="height: 22px; margin: 0px", data-toggle="collapse", data-parent="#" + service.name, href="#collapse-" + groupId) 
+                      .row-fluid(style="height: 22px")
+                        .span1= path.verb
+                        .span4= "/" + service.name + path.path
+                        .span7.text-right= path.summery
+                  .accordion-body.collapse(id="collapse-" + groupId)
+                    .accordion-inner
+                      if path.description
+                        h5.page-header Description
+                        != path.description
+                      h5.page-header URL Parameters
+                      form
+                        table.table.table-condenced
+                          thead
+                            tr
+                              td Parameter
+                              td Value
+                              td Summery
+                          tbody
+                            each param in path.pathParts
+                              if param.type === "param"
+                                tr
+                                  td= param.name
+                                  td
+                                    input.input-block-level(type="text", name=param.name)
+                                  td
+                                  td.text-right= param.summery
+                        button.btn(type="submit") Submit
+
+    script(type="text/javascript", src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
+    script(type='text/javascript', src='/_static/bootstrap/js/bootstrap.js')
