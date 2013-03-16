@@ -18,6 +18,7 @@ html(lang="en")
           .hero-unit
             h1= self.name
               small= " Version " + self.version
+            p Powered by composure
           each service in self.services
             .page-header
               h1= service.name + " "

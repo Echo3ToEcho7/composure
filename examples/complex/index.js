@@ -1,7 +1,7 @@
-var interlude = require("../../lib");
+var composure = require("../../lib");
 var services = require("./lib");
 
-var app = interlude().name("Complex Example API").version("1.1.0");
+var app = composure().name("Complex Example API").version("1.1.0");
 
 services.load(app);
 

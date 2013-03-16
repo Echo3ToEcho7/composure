@@ -1,11 +1,11 @@
-interlude
+composure
 =========
 
 Inspired by [Swagger](https://github.com/wordnik/swagger-core/) for
-Scala, interlude is built on top of
+Scala, composure is built on top of
 [restify](https://github.com/mcavage/node-restify) and
 provides a clean api for defining RESTful web service apis.  At the same 
-time, interlude provides the ability to document your services along side
+time, composure provides the ability to document your services along side
 the endpoint definitions and hadlers, and creates a documentation
 website.
 
@@ -13,9 +13,9 @@ Example
 =======
 
 ```javascript
-var interlude = require("interlude");
+var composure = require("composure");
 
-var app = interlude();
+var app = composure();
 
 var echoService = app.name("Hello, World!").service("echo").version("1.0.0");
 
@@ -52,8 +52,8 @@ app.listen(8080, function () {
 Screenshot
 ----------
 
-![interlude
-screenshot](https://raw.github.com/Echo3ToEcho7/interlude/master/screenshot.png)
+![composure
+screenshot](https://raw.github.com/Echo3ToEcho7/composure/master/screenshot.png)
 
 Todos
 =====

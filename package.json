@@ -1,5 +1,5 @@
 {
-  "name": "interlude",
+  "name": "composure",
   "version": "0.1.0",
   "description": "Syntactic suger on top of restify with document generation",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/Echo3ToEcho7/interlude.git"
+    "url": "git://github.com/Echo3ToEcho7/composure.git"
   },
   "keywords": [
     "rest"

@@ -1,6 +1,6 @@
-var interlude = require("../../lib");
+var composure = require("../../lib");
 
-var app = interlude();
+var app = composure();
 
 var echoService = app.name("Hello, World!").service("echo").version("1.0.0");
 
